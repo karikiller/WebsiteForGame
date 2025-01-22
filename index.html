@@ -3,9 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The name of the game</title>
+    <title>RevenGeon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('') no-repeat center center fixed;
+            background-size: cover;
+            color: #dcdcdc;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(27, 27, 47, 0.9);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            color: #a29bfe;
+        }
+
+        header p {
+            font-size: 1.5rem;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #9c88ff;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+        }
+
+        .description {
+            margin: 20px auto;
+            padding: 15px;
+            background: rgba(42, 42, 61, 0.9);
+            color: #dcdcdc;
+            border-radius: 10px;
+            max-width: 800px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .image-gallery img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border: 2px solid #6c5ce7;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 20px;
+            background: rgba(27, 27, 47, 0.9);
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contentOptions = [
+                {
+                    title: "Empty",
+                    text: "Empty"
+                },
+                {
+                    title: "Empty",
+                    text: "Empty"
+                },
+                {
+                    title: "Empty",
+                    text: "Empty"
+                },
+                {
+                    title: "Empty",
+                    text: "Empty"
+                },
+                {
+                    title: "Empty",
+                    text: "Empty"
+                },
+                {
+                    title: "Empty",
+                    text: "Empty"
+                }
+            ];
+
+            let contentAdded = 0;
+            window.addEventListener('scroll', () => {
+                const scrollTrigger = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
+                if (contentAdded < contentOptions.length && scrollTrigger) {
+                    const newContent = document.createElement('div');
+                    newContent.classList.add('description');
+                    const { title, text } = contentOptions[contentAdded];
+                    newContent.innerHTML = `
+                        <h3>${title}</h3>
+                        <p>${text}</p>
+                    `;
+                    document.body.appendChild(newContent);
+                    contentAdded++;
+                }
+            });
+        });
+    </script>
 </head>
 <body>
-    
+    <header>
+        <h1>RevenGeon</h1>
+        <p>Welcome to the official site for RevenGeon! Prepare to embark on a dark and thoughtful adventure.</p>
+    </header>
+
+    <div class="content">
+        <h2>About the Game</h2>
+        <p>Discover the exciting world of our game, filled with monsters, heroes(?) and endless fun. Whether you're a newbie to Rogue-Like games or a fan of it, you'll find something to love.</p>
+
+        <div class="image-gallery">
+            <img src="image1.jpg" alt="Screenshot 1">
+            <img src="image2.jpg" alt="Screenshot 2">
+            <img src="image3.jpg" alt="Screenshot 3">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 K. Karim. All rights reserved.</p>
+    </footer>
 </body>
 </html>
