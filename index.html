@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RevenGeon</title>
+    <title>Game Website</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: url('') no-repeat center center fixed;
+            background: url('https://image.api.playstation.com/cdn/EP2103/CUSA01344_00/AW9OAnoGTomOqvSDYwBxa7SVJoIu18uP.png') no-repeat center center fixed;
             background-size: cover;
             color: #dcdcdc;
         }
@@ -33,6 +33,9 @@
         .content {
             padding: 20px;
             text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            margin: 20px;
         }
 
         .content h2 {
@@ -76,6 +79,24 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         }
 
+        .download-link {
+            display: block;
+            margin: 30px auto;
+            text-align: center;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: #ffffff;
+            background-color: #6c5ce7;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .download-link:hover {
+            background-color: #4834d4;
+            transform: scale(1.05);
+        }
+
         footer {
             text-align: center;
             padding: 10px 20px;
@@ -94,35 +115,34 @@
         document.addEventListener('DOMContentLoaded', () => {
             const contentOptions = [
                 {
-                    title: "Empty",
-                    text: "Empty"
+                    title: "Explore the dungeons!",
+                    text: "Explore endless dungeons filled with monsters and bosses!"
                 },
                 {
-                    title: "Empty",
-                    text: "Empty"
+                    title: "Loot items!",
+                    text: "Find and take gold, items or any other things you will find!"
                 },
                 {
-                    title: "Empty",
-                    text: "Empty"
+                    title: "Find out the true story...",
+                    text: "Maybe you will find out why did it happen..."
                 },
                 {
-                    title: "Empty",
-                    text: "Empty"
+                    title: "Play as knight!",
+                    text: "Play as the first character - knight!"
                 },
                 {
-                    title: "Empty",
-                    text: "Empty"
+                    title: "Win bosses!",
+                    text: "Fight and beat giant bosses!"
                 },
                 {
-                    title: "Empty",
-                    text: "Empty"
+                    title: "Share it!",
+                    text: "Share the game with your friends!"
                 }
             ];
 
             let contentAdded = 0;
-            window.addEventListener('scroll', () => {
-                const scrollTrigger = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
-                if (contentAdded < contentOptions.length && scrollTrigger) {
+            const addContent = () => {
+                if (contentAdded < contentOptions.length) {
                     const newContent = document.createElement('div');
                     newContent.classList.add('description');
                     const { title, text } = contentOptions[contentAdded];
@@ -132,6 +152,23 @@
                     `;
                     document.body.appendChild(newContent);
                     contentAdded++;
+                }
+            };
+
+            // Preload content if screen height allows full view
+            const preloadContent = () => {
+                const availableHeight = window.innerHeight;
+                const contentHeight = document.body.scrollHeight;
+                while (availableHeight > contentHeight && contentAdded < contentOptions.length) {
+                    addContent();
+                }
+            };
+
+            preloadContent();
+            window.addEventListener('scroll', () => {
+                const scrollTrigger = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
+                if (scrollTrigger) {
+                    addContent();
                 }
             });
         });
@@ -148,14 +185,16 @@
         <p>Discover the exciting world of our game, filled with monsters, heroes(?) and endless fun. Whether you're a newbie to Rogue-Like games or a fan of it, you'll find something to love.</p>
 
         <div class="image-gallery">
-            <img src="image1.jpg" alt="Screenshot 1">
-            <img src="image2.jpg" alt="Screenshot 2">
-            <img src="image3.jpg" alt="Screenshot 3">
+            <img src="https://i.imgur.com/gLPyfQY.png" alt="Screenshot 1">
+            <img src="https://i.imgur.com/bIKNTtY.jpeg" alt="Screenshot 2">
+            <img src="https://assetsio.gnwcdn.com/binding-of-isaac-crop.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp" alt="Screenshot 3">
         </div>
+
+        <a href="game-download-link" class="download-link">Download the Game</a>
     </div>
 
     <footer>
-        <p>&copy; 2025 K. Karim. All rights reserved.</p>
+        <p>&copy; 2025 Just a test.</p>
     </footer>
 </body>
 </html>
